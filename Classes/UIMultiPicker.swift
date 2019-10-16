@@ -45,6 +45,13 @@ open class UIMultiPicker: UIControl {
         }
     }
 
+    @IBInspectable
+    public var bgColor: UIColor = UIColor.black {
+        didSet {
+            picker.setNeedsLayout()
+        }
+    }
+
     @objc
     public func highlight(_ at: Int, animated: Bool = true) {
         picker.selectRow(at, inComponent: 0, animated: animated)
@@ -105,6 +112,8 @@ class UIMultiPickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSou
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        backgroundColor = parent.bgColor
 
         layer.borderWidth = 0 // Main view rounded border
 
